@@ -10,8 +10,10 @@ import { CmdModal } from './components/modals/CmdModal';
 import { CRTOverlay } from './components/ui/CRTOverlay';
 import { MonoLabel } from './components/ui/MonoLabel';
 
+import type { Rotation } from './types';
+
 type Modal = 'dice' | 'reset' | null;
-type CmdTarget = { playerId: number; opponentId: number } | null;
+type CmdTarget = { playerId: number; opponentId: number; rotation: Rotation } | null;
 
 export default function App() {
   const players = useGameStore((s) => s.players);
@@ -78,7 +80,7 @@ export default function App() {
               slot={slot}
               opponents={opponents}
               allSlots={layout.slots}
-              onCmdSelect={(opponentId) => setCmdTarget({ playerId: player.id, opponentId })}
+              onCmdSelect={(opponentId, rotation) => setCmdTarget({ playerId: player.id, opponentId, rotation })}
             />
           );
         })}
@@ -111,6 +113,7 @@ export default function App() {
         <CmdModal
           playerId={cmdTarget.playerId}
           opponentId={cmdTarget.opponentId}
+          rotation={cmdTarget.rotation}
           onClose={() => setCmdTarget(null)}
         />
       )}

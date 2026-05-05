@@ -35,8 +35,8 @@ export function LifeRow({ playerId, life, accent, dead }: Props) {
   return (
     <div className="w-full flex items-center justify-between px-2 select-none">
       <button
-        className="w-16 h-16 flex items-center justify-center text-4xl font-mono rounded border transition-all active:scale-90"
-        style={{ borderColor: `rgba(${rgb},0.3)`, color: `rgba(${rgb},0.7)` }}
+        className="flex items-center justify-center font-mono rounded border transition-all active:scale-90"
+        style={{ width: 70, height: 70, fontSize: '2.475rem', borderColor: `rgba(${rgb},0.3)`, color: `rgba(${rgb},0.7)` }}
         {...decPress}
         aria-label="decrease life"
       >
@@ -45,14 +45,15 @@ export function LifeRow({ playerId, life, accent, dead }: Props) {
 
       <div className="flex flex-col items-center">
         <div
-          className={`font-mono text-7xl font-bold tracking-tight animate-flicker transition-colors duration-500 ${dead ? 'opacity-30 line-through' : ''}`}
-          style={{ color: dead ? '#FF3278' : accent, textShadow: `0 0 20px rgba(${rgb},0.5)` }}
+          className={`font-mono font-bold tracking-tight animate-flicker transition-colors duration-500 ${dead ? 'opacity-30 line-through' : ''}`}
+          style={{ fontSize: '4.95rem', color: dead ? '#FF3278' : accent, textShadow: `0 0 20px rgba(${rgb},0.5)` }}
         >
           {life}
         </div>
         <div
-          className="font-mono text-sm tracking-widest transition-opacity duration-500"
+          className="font-mono tracking-widest transition-opacity duration-500"
           style={{
+            fontSize: '0.9625rem',
             opacity: deltaVisible ? 1 : 0,
             color: delta >= 0 ? `rgba(${rgb},0.7)` : '#FF3278',
           }}
@@ -62,8 +63,8 @@ export function LifeRow({ playerId, life, accent, dead }: Props) {
       </div>
 
       <button
-        className="w-16 h-16 flex items-center justify-center text-4xl font-mono rounded border transition-all active:scale-90"
-        style={{ borderColor: `rgba(${rgb},0.3)`, color: `rgba(${rgb},0.7)` }}
+        className="flex items-center justify-center font-mono rounded border transition-all active:scale-90"
+        style={{ width: 70, height: 70, fontSize: '2.475rem', borderColor: `rgba(${rgb},0.3)`, color: `rgba(${rgb},0.7)` }}
         {...incPress}
         aria-label="increase life"
       >

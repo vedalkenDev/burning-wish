@@ -24,7 +24,10 @@ module.exports = {
         "pulse-dot": "pulse-dot 2.5s ease-in-out infinite",
         "scan-line": "scan-line 4s linear infinite",
         "fade-up":   "fade-up 0.35s ease forwards",
-        "sheet-up":  "sheet-up 0.3s cubic-bezier(0.32,0.72,0,1) forwards",
+        "sheet-up":    "sheet-up    0.3s cubic-bezier(0.32,0.72,0,1) forwards",
+        "sheet-down":  "sheet-down  0.3s cubic-bezier(0.32,0.72,0,1) forwards",
+        "sheet-left":  "sheet-left  0.3s cubic-bezier(0.32,0.72,0,1) forwards",
+        "sheet-right": "sheet-right 0.3s cubic-bezier(0.32,0.72,0,1) forwards",
         "roll-spin": "roll-spin 0.4s ease-out",
       },
       keyframes: {
@@ -53,6 +56,18 @@ module.exports = {
         "sheet-up": {
           from: { transform: "translateY(100%)" },
           to:   { transform: "translateY(0)" },
+        },
+        "sheet-down": {
+          from: { transform: "translateY(-100%)" },
+          to:   { transform: "translateY(0)" },
+        },
+        "sheet-left": {
+          from: { transform: "translateX(-100%)" },
+          to:   { transform: "translateX(0)" },
+        },
+        "sheet-right": {
+          from: { transform: "translateX(100%)" },
+          to:   { transform: "translateX(0)" },
         },
         "roll-spin": {
           "0%":   { transform: "rotate(0deg) scale(1)" },

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Player, Slot } from '../types';
+import type { Player, Slot, Rotation } from '../types';
 import { useGameStore } from '../store/useGameStore';
 import { accentRgb } from '../utils/accentRgb';
 import { LifeRow } from './LifeRow';
@@ -12,7 +12,7 @@ interface Props {
   slot: Slot;
   opponents: Player[];
   allSlots: Slot[];
-  onCmdSelect: (opponentId: number) => void;
+  onCmdSelect: (opponentId: number, rotation: Rotation) => void;
 }
 
 export function PlayerCard({ player, slot, opponents, allSlots, onCmdSelect }: Props) {
@@ -82,7 +82,7 @@ export function PlayerCard({ player, slot, opponents, allSlots, onCmdSelect }: P
           </span>
           <button className="font-mono text-[10px] text-poison/60 w-5 h-5 flex items-center justify-center" {...poisonInc}>+</button>
         </div>
-        <CmdMap player={player} opponents={opponents} allSlots={allSlots} onSelect={onCmdSelect} />
+        <CmdMap player={player} opponents={opponents} allSlots={allSlots} onSelect={(opponentId) => onCmdSelect(opponentId, slot.rotation)} />
       </div>
 
     </div>
