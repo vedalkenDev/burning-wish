@@ -12,9 +12,10 @@ interface Props {
   slot: Slot;
   opponents: Player[];
   allSlots: Slot[];
+  onCmdSelect: (opponentId: number) => void;
 }
 
-export function PlayerCard({ player, slot, opponents, allSlots }: Props) {
+export function PlayerCard({ player, slot, opponents, allSlots, onCmdSelect }: Props) {
   const changePoison = useGameStore((s) => s.changePoison);
 
   const outerRef = useRef<HTMLDivElement>(null);
@@ -81,7 +82,7 @@ export function PlayerCard({ player, slot, opponents, allSlots }: Props) {
           </span>
           <button className="font-mono text-[10px] text-poison/60 w-5 h-5 flex items-center justify-center" {...poisonInc}>+</button>
         </div>
-        <CmdMap player={player} opponents={opponents} allSlots={allSlots} />
+        <CmdMap player={player} opponents={opponents} allSlots={allSlots} onSelect={onCmdSelect} />
       </div>
 
     </div>

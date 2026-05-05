@@ -6,15 +6,18 @@ import { SetupScreen } from './components/SetupScreen';
 import { PlayerCard } from './components/PlayerCard';
 import { DiceModal } from './components/modals/DiceModal';
 import { ResetModal } from './components/modals/ResetModal';
+import { CmdModal } from './components/modals/CmdModal';
 import { CRTOverlay } from './components/ui/CRTOverlay';
 import { MonoLabel } from './components/ui/MonoLabel';
 
 type Modal = 'dice' | 'reset' | null;
+type CmdTarget = { playerId: number; opponentId: number } | null;
 
 export default function App() {
   const players = useGameStore((s) => s.players);
   const gameActive = useGameStore((s) => s.gameActive);
   const [modal, setModal] = useState<Modal>(null);
+  const [cmdTarget, setCmdTarget] = useState<CmdTarget>(null);
 
   useWakeLock(gameActive);
 
@@ -75,6 +78,7 @@ export default function App() {
               slot={slot}
               opponents={opponents}
               allSlots={layout.slots}
+              onCmdSelect={(opponentId) => setCmdTarget({ playerId: player.id, opponentId })}
             />
           );
         })}
@@ -103,6 +107,13 @@ export default function App() {
 
       {modal === 'dice' && <DiceModal onClose={() => setModal(null)} />}
       {modal === 'reset' && <ResetModal onClose={() => setModal(null)} />}
+      {cmdTarget && (
+        <CmdModal
+          playerId={cmdTarget.playerId}
+          opponentId={cmdTarget.opponentId}
+          onClose={() => setCmdTarget(null)}
+        />
+      )}
     </div>
   );
 }
